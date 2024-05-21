@@ -42,14 +42,14 @@ double totalCharges(double, double);
 int main() {
 
 	// Variables
-	int days,  // holds the number of day's stayed in the hospitol
-		choice;  // holds the user's menu choice
+	int choice;                      // holds the user's menu choice
+	int days = -1;                   // holds number of days
 
-	double dailyRate,  // holds the hospitol's daily stay rate
-		    medication,  // holds the medication charges
-		      services;  // holds the services charges
+	double dailyRate = -1,           // holds the hospitol's daily stay rate
+		    medication = -1,           // holds the medication charges
+		      services = -1;           // holds the services charges
 
-	double patientCharges = 0;  // holds the patient's total charges
+	double patientCharges = 0;       // holds the patient's total charges
 
 	const int INPATIENT_CHOICE = 1,  // Inpatient menu option
 		       OUTPATIENT_CHOICE = 2;  // Outpatient menu option
@@ -71,28 +71,23 @@ int main() {
 	switch (choice) {
 	case INPATIENT_CHOICE:
 		// Inpatient user prompt
-		cout << "Number of days spent in the hospital: ";
-		cin >> days;
-		cout << "Daily rate: ";
-		cin >> dailyRate;
-		cout << "Medication charges: ";
-		cin >> medication;
-		cout << "Services charges: ";
-		cin >> services;
-
-		// Input validation
-		// Do not accept any negative values
 		while (days < 0 || dailyRate < 0 || medication < 0 || services < 0) {
-			// Error message
-			cout << "\nInvalid Input\n* Negative values are not accepted\n";
-			cout << "\nNumber of days spent in the hospital: ";
+			cout << "* Number of days spent in the hospital: ";
 			cin >> days;
-			cout << "Daily rate: ";
+			cout << "* Daily rate: $";
 			cin >> dailyRate;
-			cout << "Medication charges: ";
+			cout << "* Medication charges: $";
 			cin >> medication;
-			cout << "Services charges: ";
+			cout << "* Services charges: $";
 			cin >> services;
+
+			// Input validation
+			// Do not accept any negative values
+			if (days < 0 || dailyRate < 0 || medication < 0 || services < 0) {
+				// Error message
+				cout << "\nInvalid Input\n* Negative values are not accepted\n";
+				cout << "\nEnter the following - " << endl;
+			}
 		}
 
 		// Call totalCharges() passing into the function the inpatient's data,
@@ -102,20 +97,19 @@ int main() {
 
 	case OUTPATIENT_CHOICE:
 		// Outpatient user prompt
-		cout << "Medication charges: ";
-		cin >> medication;
-		cout << "Services charges: ";
-		cin >> services;
-
-		// Input validation
-		// Do not accept any negative values
 		while (medication < 0 || services < 0) {
-			// Error message
-			cout << "\nInvalid Input\n* Negative values are not accepted\n";
-			cout << "\nMedication charges: ";
+			cout << "* Medication charges: $";
 			cin >> medication;
-			cout << "Services charges: ";
+			cout << "* Services charges: $";
 			cin >> services;
+
+			// Input validation
+			// Do not accept any negative values
+			if (medication < 0 || services < 0) {
+				// Error message
+				cout << "\nInvalid Input\n* Negative values are not accepted\n";
+				cout << "\nEnter the following -\n";
+			}
 		}
 
 		// Call totalCharges() passing into the function the outpatient's data,
@@ -125,9 +119,27 @@ int main() {
 	}
 
 	// Output results
-	cout << setprecision(2) << fixed;
-	cout << "\nPatient Charges $" << patientCharges << endl;
+	cout << "\n\n- Hospital Report -\n";
+	
+	// if statement is used to determine inpatient or outpatient output
+	if (choice == 1) {  // inpatient
+		// Print to console
+		cout << "Inpatient Charges\n\n";
+		cout << "Number of Days ... " << days << endl;
+		cout << "Daily Rate ....... $" << fixed << setprecision(2) << dailyRate << endl;
+		cout << "Medications ...... $" << fixed << setprecision(2) << medication << endl;
+		cout << "Services ......... $" << fixed << setprecision(2) << services << endl;
+		cout << "Total ............ $" << fixed << setprecision(2) << patientCharges << endl;
+}
 
+	if (choice == 2) {  // outpatient
+		// Print to console
+		cout << "Outpatient Charges\n\n";
+		cout << "Medications ... $" << fixed << setprecision(2) << medication << endl;
+		cout << "Services ...... $" << fixed << setprecision(2) << services << endl;
+		cout << "Total ......... $" << fixed << setprecision(2) << patientCharges << endl;
+}
+	cout << endl;
 	return 0;
 }
 
