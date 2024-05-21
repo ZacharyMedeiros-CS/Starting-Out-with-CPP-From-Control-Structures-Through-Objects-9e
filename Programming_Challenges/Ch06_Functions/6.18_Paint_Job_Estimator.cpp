@@ -1,5 +1,8 @@
 //
-//
+// This program prompts a user for information needed
+// for a paint job, and outputs the job's details. The 
+// program makes use of several functions, global 
+// variables, global constants, a and static variable.
 //
 
 /*
