@@ -1,7 +1,6 @@
 //
-// This program allows the user to enter an integer to check 
-// if the value is a prime. The function isPrime() is called
-// to check if the value is prime and returns a bool.
+// This program uses the function isPrime to write the prime
+// values from 1 through 100 to the text file Primes.txt
 //
 
 /*
